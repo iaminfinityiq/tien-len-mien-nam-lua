@@ -5,15 +5,13 @@ function List:new()
     local _ = setmetatable({}, self)
 
     local parent_list = {}
-    local list_size = 0
     
     function self:size()
-        return list_size
+        return #parent_list
     end
 
     function self:push(element)
-        list_size = list_size+1
-        parent_list[list_size] = element
+        parent_list[#parent_list+1] = element
     end
 
     function self:get(index)
@@ -26,7 +24,7 @@ function List:new()
 
     function self:copy()
         local returned = List:new()
-        for i = 1, list_size, 1 do
+        for i = 1, #parent_list, 1 do
             returned:push(self:get(i))
         end
 
